@@ -13,4 +13,4 @@ Define a name for the Node.js code
 And in the Advanced Settings, enable Funtion URL with NONE Auth type
 ![](https://github.com/tarrinho/Fortify2TeamsWebhook/blob/main/images/image4.png?raw=true)
 
-After creating the function, you need to change the file name from index.mjs to index.js and copy the <lambda.nodejs> code to it. Don't forget to change the url and path to your Teams webhook. And finally, Deploy it.
+After creating the function, you need to change the file name from index.mjs to index.js and copy the [lambda.nodejs](https://github.com/tarrinho/Fortify2TeamsWebhook/blob/main/lamda.nodejs) code to it. Don't forget to change the url and path to your Teams webhook. And finally, Deploy it.
