@@ -1,5 +1,7 @@
 # Fortify2TeamsWebhook
-Fortify 2 Teams Webhook
+After starting to use Fortify from Microfocus, and adding alot of projects and users we realize that we needed a way to share with everyone in Teams what was going on. So we decided to use the Webhook function from Teams/Fortify. However, their syntax don't match. Damn!!
+
+So I decided to create this simple function : **Fortify 2 Teams Webhook**
 
 In order to have this Lambda function up and running in AWS you need to go to the Lambda area.
 ![](https://github.com/tarrinho/Fortify2TeamsWebhook/blob/main/images/image1.png?raw=true)
