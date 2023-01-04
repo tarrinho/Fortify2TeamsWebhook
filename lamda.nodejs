@@ -18,10 +18,13 @@ exports.handler = async (event) => {
   // Modify the message payload object
   new_payload.summary = payloadObject.events[0].event;
   new_payload.text = payloadObject.events[0].event;
-  if (payloadObject.events[0].hasOwnProperty('username')) {new_payload.text += "<br>email: " + payloadObject.events[0].username;}
-  if (payloadObject.events[0].hasOwnProperty('message')) {new_payload.text += "<br>" + payloadObject.events[0].message;}
-  if (payloadObject.events[0].hasOwnProperty('projectName')) {new_payload.text += "<br>" + payloadObject.events[0].projectName;}
-  
+   if (payloadObject.events[0].hasOwnProperty('username')) {new_payload.text += "<br>Email: " + payloadObject.events[0].username;}
+  if (payloadObject.events[0].hasOwnProperty('userType')) {new_payload.text += "<br>UserType: " + payloadObject.events[0].userType;}
+  if (payloadObject.events[0].hasOwnProperty('message')) {new_payload.text += "<br>Event:" + payloadObject.events[0].message;}
+  if (payloadObject.events[0].hasOwnProperty('projectName')) {new_payload.text += "<br>Project Name:" + payloadObject.events[0].projectName;}
+  if (payloadObject.events[0].hasOwnProperty('projectVersionName')) {new_payload.text += "<br>Project Version Name:" + payloadObject.events[0].projectVersionName;}
+  if (payloadObject.events[0].hasOwnProperty('filename')) {new_payload.text += "<br>Filename:" + payloadObject.events[0].filename;}
+  if (payloadObject.events[0].hasOwnProperty('approvalUsername')) {new_payload.text += "<br>Approval Username:" + payloadObject.events[0].approvalUsername;} 
   
   
   // Convert the modified payload object back to a string
