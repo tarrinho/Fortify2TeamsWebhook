@@ -1,0 +1,64 @@
+
+const https = require('https');
+
+exports.handler = async (event) => {
+
+  // Get the message payload from the event object
+  const payload = event.body;
+
+  // Convert the message payload from a string to an object
+  const payloadObject = JSON.parse(payload);
+  
+// new message payload object
+  const new_payload = {
+    "summary": ".",
+    "text": "."
+  };
+
+  // Modify the message payload object
+  new_payload.summary = payloadObject.events[0].event;
+  new_payload.text = payloadObject.events[0].event;
+  if (payloadObject.events[0].hasOwnProperty('username')) {new_payload.text += "<br>email: " + payloadObject.events[0].username;}
+  if (payloadObject.events[0].hasOwnProperty('message')) {new_payload.text += "<br>" + payloadObject.events[0].message;}
+  if (payloadObject.events[0].hasOwnProperty('projectName')) {new_payload.text += "<br>" + payloadObject.events[0].projectName;}
+  
+  
+  
+  // Convert the modified payload object back to a string
+  const modifiedPayloadString = JSON.stringify(new_payload);
+
+  // send to webhook
+  var options = {
+    "method": "POST",
+    "port": 443,
+    "hostname": "xxx.webhook.office.com",
+    "path": "<path of the teams webhook>",
+    "headers": {
+      "Content-Type": "application/json",
+      "Content-Length": modifiedPayloadString.length,
+    }
+  };
+
+  let response = await post(options, modifiedPayloadString);
+  return {
+    statusCode: 200,
+    body: "Success" + response
+  };
+
+};
+function post(options, jsonData) {
+  return new Promise(((resolve, reject) => {
+    const req = https.request(options, (res) => {
+      console.log(`statusCode: ${res.statusCode}`)
+      res.on('data', (d) => {
+        console.log(d)
+      });
+    });
+
+    req.on('error', (error) => {
+      console.error(error)
+    });
+    req.write(jsonData)
+    req.end()
+  }));
+}
